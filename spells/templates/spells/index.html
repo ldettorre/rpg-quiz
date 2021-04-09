@@ -1,5 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1> This is the spells page </h1>
-
+<div class="container">
+    <h1> This is the spells page </h1>
+    <div class="row">
+        {% for spell in spells %}
+        <div class="col-6">
+            <p>Name: {{ spell.name }}</p>
+            <p>Class: {{ spell.class_type }}</p>
+            <p>Level: {{ spell.level }}</p>
+            <p>Points: {{ spell.points }}</p>
+            <p>Description: {{ spell.comical_description }}</p>
+            <p>{{ spell.fantasy_universe }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
