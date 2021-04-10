@@ -11,8 +11,14 @@
             <p>Points: {{ spell.points }}</p>
             <p>Description: {{ spell.comical_description }}</p>
             <p>{{ spell.fantasy_universe }}</p>
+            <a href="{% url 'index' spell.id %}" class="btn btn-default">Select</a>
         </div>
         {% endfor %}
     </div>
+    {% if prev_selection %}
+        <p>You recently chose: {{ prev_selection }}</p>
+    {% else %}
+        <p>Make a selection</p>
+    {% endif %}
 </div>
 {% endblock %}
