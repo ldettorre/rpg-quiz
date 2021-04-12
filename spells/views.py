@@ -24,7 +24,7 @@ def index(request, spell_id=None):
         for t in total:
             if total[t] >= 25:
                 print("You ARE A " + str(t))
-        print(total)
+        print(total) 
 
         
     '''Generate two random spells for the user to choose from'''
@@ -43,3 +43,7 @@ def index(request, spell_id=None):
     return render(request, 'spells/index.html', context)
 
 
+def reset(request):
+    total = request.session
+    total.clear()
+    return redirect('index')
