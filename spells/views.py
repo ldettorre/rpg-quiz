@@ -20,18 +20,23 @@ def index(request, spell_id=None):
 
         request.session['total'] = total
 
-        ''' Check if any class has exceeded the point limit'''
+        ''' Check if any class_type has exceeded the point limit'''
         for t in total:
             if total[t] >= 25:
-                print("You ARE A " + str(t))
-        print(total) 
+                # return redirect('result')
+                result_message = "Congratulations! You're ready to discover your class type."
+                class_type = t
+                context = {
+                    'result_message': result_message,
+                    'class_type':class_type,
+                }
+                return render(request, 'spells/index.html', context)
 
         
     '''Generate two random spells for the user to choose from'''
     randomspells = []
     while len(randomspells) < 2:
         random_selection = random.choice(Spell.objects.all())
-        # print(random_selection)
         if random_selection != prev_selection:
             if random_selection not in randomspells:
                 randomspells.append(random_selection)
@@ -43,7 +48,17 @@ def index(request, spell_id=None):
     return render(request, 'spells/index.html', context)
 
 
+
 def reset(request):
+    '''Resets the session and removes existing quiz selections'''
     total = request.session
     total.clear()
     return redirect('index')
+
+
+def result(request, class_type):
+    '''This renders the result page html with relevant class details'''
+    context = {
+        'class_type': class_type,
+    }
+    return render(request, 'spells/result.html', context)

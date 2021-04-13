@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1> Congratulations Wanderer! </h1>
+            <h2>Your class awaits!</h2>
+        </div>
+    </div>
+    
+    <div class="row">
+        <h2>You are destined to be a <b>{{ class_type }}</b></h2>
+    </div>
+    
+    <a href="{% url 'reset' %}" class="btn btn-default">Reset the quiz.</a>
+</div>
+{% endblock %}
