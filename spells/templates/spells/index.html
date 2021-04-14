@@ -19,6 +19,8 @@
         <p>You recently chose: {{ prev_selection }}</p>
     {% elif result_message %}
         <a href="{% url 'result' class_type %}" class="btn btn-default">{{ result_message }}. </a>
+    {% elif error_message %}
+        {{ error_message }}
     {% else %}
         <p>Make a selection</p>
     {% endif %}
