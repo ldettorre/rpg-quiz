@@ -6,62 +6,44 @@ import random
 # Create your views here.
 
 def index(request, spell_id=None):
-    '''Check if a spell has been selected'''
-    prev_selection = None
-    previous_selections = []
+    '''Save the users recent selection to a list and keep record of
+    the seletions class type and points'''
+    previous_selections = request.session.get('previous_selections', [])
     if spell_id != None:
-        prev_selection = get_object_or_404(Spell, id=spell_id)
-        # print(prev_selection.class_type, prev_selection.points)
-        previous_selections = request.session.get('previous_selections', [])
-        previous_selections.append(prev_selection.id)                                                    
-        print(previous_selections)
-
-        '''We create a previous selections list to avoid duplicates'''
+        user_selection = get_object_or_404(Spell, id=spell_id)
+        previous_selections.append(user_selection.id)                                                    
         request.session['previous_selections'] = previous_selections
-        # print(previous_selections)
 
-        '''The name for our record of submissions is 'total' '''
-        total = request.session.get('total', {})
+        class_scores = request.session.get('class_scores', {})
+        class_scores[user_selection.class_type] = class_scores.get(user_selection.class_type, 0) + user_selection.points
+        request.session['class_scores'] = class_scores
 
-        '''We update the class total by the number of points the user selection carries'''
-        total[prev_selection.class_type] = total.get(prev_selection.class_type, 0) + prev_selection.points
-
-        request.session['total'] = total
-
-        ''' Check if any class_type has exceeded the point limit'''
-        for t in total:
-            if total[t] >= 20:
+        '''Check if any class_type has exceeded the point limit'''
+        for c in class_scores:
+            if class_scores[c] >= 20:
                 result_message = "Congratulations! You're ready to discover your class type."
-                class_type = t
+                class_type = c
                 context = {
                     'result_message': result_message,
-                    'class_type':class_type,
+                    'class_type': class_type,
                 }
                 return render(request, 'spells/index.html', context)
 
-    '''Check if there are enough spells left to generate 2 at random'''
+    '''Pull 2 random spells if there are less selections 
+    made than spells available'''
     if len(previous_selections) <= len(Spell.objects.all())-2:
-
-        '''Generate said random spells'''
-        randomspells = []
-        while len(randomspells) < 2:
-            random_selection = random.choice(Spell.objects.all())
-            print(random_selection.id)
-            if random_selection.id not in previous_selections:
-                if random_selection not in randomspells:
-                    randomspells.append(random_selection)
+        random_spells_list = []
+        while len(random_spells_list) < 2:
+            random_spell = random.choice(Spell.objects.all())
+            if random_spell.id not in previous_selections:
+                if random_spell not in random_spells_list:
+                    random_spells_list.append(random_spell)
     else:
-        error_message = "You finished the quiz and still don't have a destiny?!"
-        context = {
-                    'error_message': error_message,
-                }
-        return render(request, 'spells/index.html', context)
-
-
+        no_result = "You finished the quiz and still don't have a destiny?!"
+        return render(request, 'spells/index.html', {'no_result':no_result})
 
     context = {
-        'randomspells': randomspells,
-        'prev_selection': prev_selection,
+        'random_spells_list': random_spells_list,
     }
     return render(request, 'spells/index.html', context)
 
@@ -69,14 +51,12 @@ def index(request, spell_id=None):
 
 def reset(request):
     '''Resets the session and removes existing quiz selections'''
-    total = request.session
-    total.clear()
+    class_scores = request.session.clear()
     return redirect('index')
 
 
 def result(request, class_type):
     '''This renders the result page html with relevant class details'''
-    context = {
-        'class_type': class_type,
-    }
-    return render(request, 'spells/result.html', context)
+    return render(request, 'spells/result.html',  {'class_type': class_type})
+
+

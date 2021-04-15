@@ -1,9 +1,25 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-    <h1> This is the spells page </h1>
+    <div class='row'>
+        <div class='col text-center'>
+            <h1> This is the spells page </h1>
+        </div>
+   </div>
+   <div class='row'>
+        <div class="col text-center">
+            {% if result_message %}
+                <a href="{% url 'result' class_type %}" class="btn btn-default">{{ result_message }}. </a>
+            {% elif no_result %}
+                {{ no_result }}
+            {% else %}
+                <p>Make a selection</p>
+            {% endif %}
+        </div>
+    </div>
+    
     <div class="row">
-        {% for spell in randomspells %}
+        {% for spell in random_spells_list %}
         <div class="col-6">
             <p>Name: {{ spell.name }}</p>
             <p>Class: {{ spell.class_type }}</p>
@@ -15,18 +31,9 @@
         </div>
         {% endfor %}
     </div>
-    {% if prev_selection %}
-        <p>You recently chose: {{ prev_selection }}</p>
-    {% elif result_message %}
-        <a href="{% url 'result' class_type %}" class="btn btn-default">{{ result_message }}. </a>
-    {% elif error_message %}
-        {{ error_message }}
-    {% else %}
-        <p>Make a selection</p>
-    {% endif %}
-
-    
    
-    <a href="{% url 'reset' %}" class="btn btn-default">Reset the quiz.</a>
+    <div class='col-12 text-center'>
+        <a href="{% url 'reset' %}" class="btn btn-default">Reset the quiz.</a>
+    </div>
 </div>
 {% endblock %}
