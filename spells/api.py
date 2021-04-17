@@ -2,14 +2,21 @@ import requests
 import json
 
 
-base_url = 'https://www.dnd5eapi.co/api/'
+base_url = 'https://www.dnd5eapi.co'
 
-def print_json(obj):
-    data = json.dumps(obj, sort_keys=True, indent=4)
-    print(data)
+response = requests.get(base_url + '/api/spells/')
+data = response.json()
 
-response = requests.get(base_url + 'spells/time-stop')
-print(response.status_code)
+for i in data['results']:
+    spell = requests.get(base_url + i['url'])
+    print(spell.json()['name'])
+    print(spell.json()['index'])
+    print(spell.json()['desc'])
+    
 
-print_json(response.json())
+
+# print(base_url+individual_spell)
+
+
+
 
