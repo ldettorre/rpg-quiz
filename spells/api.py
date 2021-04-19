@@ -1,33 +1,35 @@
 import requests
 import json
-from .models import Spell
-
 
 base_url = 'https://www.dnd5eapi.co'
 
 response = requests.get(base_url + '/api/spells/')
+
 data = response.json()
 
-for i in data['results']:
-    spell = requests.get(base_url + i['url'])
-    print("Name:", spell.json()['name'])
-    print("Index:", spell.json()['index'])
-    print("Classes:", spell.json()['classes'])
-    print("Level:", spell.json()['level'])
-    print("Desc:", spell.json()['desc'])
-    break
+test_response = requests.get('https://www.dnd5eapi.co/api/spells/acid-splash')
+test_data = test_response.json()
+
+def spell_entry(obj):
+    data = obj
+    count = 0
+    for i in data['results']:
+        spell = requests.get(base_url + i['url'])
+        print(spell.json()['name'])
+        classes = spell.json()['classes']
+        for i in classes:
+            print(i['name'])
+        print(spell.json()['level'])
+        print(spell.json()['desc'])
+        count += 1
+        if count >=5:
+            break
     
-# name = "Burn"
-# class_type = "Sorcerer"
-# level = 5
-# comical_description = "Do you smell toast"
+spell_entry(data)
 
 
-# def spell_entry(name, class_type, level, comical_description):
-#     s = Spell(name=name, class_type=class_type, level=level, points=level, comical_description=comical_description)
-#     s.save()
 
-# spell_entry(name, class_type, level, comical_description)
+
 
 
 
