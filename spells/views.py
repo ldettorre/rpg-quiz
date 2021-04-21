@@ -15,11 +15,13 @@ def index(request, spell_id=None):
         request.session['previous_selections'] = previous_selections
 
         class_scores = request.session.get('class_scores', {})
-        class_scores[user_selection.class_type] = class_scores.get(user_selection.class_type, 0) + user_selection.points
-        request.session['class_scores'] = class_scores
+        for each_class in user_selection.class_type.all():
+            class_scores[each_class.name] = class_scores.get(each_class.name, 0) + user_selection.points
+            request.session['class_scores'] = class_scores
 
         '''Check if any class_type has exceeded the point limit'''
         for c in class_scores:
+            print(c,class_scores[c])
             if class_scores[c] >= 20:
                 result_message = "Congratulations! You're ready to discover your class type."
                 class_type = c

@@ -3,6 +3,20 @@ import json
 from .models import ClassType, Spell
 
 
+
+# Below loops over the API classes and creates them within our db.
+
+# base_url = 'https://www.dnd5eapi.co'
+
+# response = requests.get(base_url + '/api/classes/')
+
+# data = response.json()
+
+# for d in data['results']:
+#     new_class = d['name']
+#     ClassType.objects.create(name=new_class)
+
+
 base_url = 'https://www.dnd5eapi.co'
 
 response = requests.get(base_url + '/api/spells/')
@@ -10,13 +24,17 @@ response = requests.get(base_url + '/api/spells/')
 data = response.json()
 
 def spell_entry(obj):
+    ''' Loop over each spell for it's url, then use the url in a request to access
+    all the other data in that individual spell. Once the data has been 
+    to a variable, we create a new spell object and add classes '''
+
     data = obj
 
     for i in data['results']:
         spell = requests.get(base_url + i['url'])
         spell_name = spell.json()['name']
         spell_classes = spell.json()['classes']
-        
+
         new_classes =[]
         for i in spell_classes:
             class_type = i['name']
@@ -41,17 +59,7 @@ def spell_entry(obj):
     
 spell_entry(data)
 
-# Below loops over the API classes and creates them within our db.
 
-# base_url = 'https://www.dnd5eapi.co'
-
-# response = requests.get(base_url + '/api/classes/')
-
-# data = response.json()
-
-# for d in data['results']:
-#     new_class = d['name']
-#     ClassType.objects.create(name=new_class)
 
 
 
