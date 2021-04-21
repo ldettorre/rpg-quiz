@@ -1,6 +1,6 @@
 import requests
 import json
-from .models import ClassType
+from .models import ClassType, Spell
 
 
 base_url = 'https://www.dnd5eapi.co'
@@ -11,31 +11,31 @@ data = response.json()
 
 def spell_entry(obj):
     data = obj
-    count = 0
+
     for i in data['results']:
         spell = requests.get(base_url + i['url'])
-        # name = spell.json()['name']
-        classes = spell.json()['classes']
-        for i in classes:
+        spell_name = spell.json()['name']
+        spell_classes = spell.json()['classes']
+        
+        new_classes =[]
+        for i in spell_classes:
             class_type = i['name']
-            print(class_type, type(class_type))
             existing_classes = ClassType.objects.all()
             for e in existing_classes:
                 if class_type == e.name:
-                    print("Match")
-        # level = spell.json()['level']
-        # comical_description = spell.json()['desc']
-        # fantasy_universe = "D&D"
-        count += 1
-        if count >=5:
-            break
+                    new_classes.append(e.id)
         
-        # spell = Spell.objects.create(name=name, 
-        #     class_type=class_type, 
-        #     level=level, 
-        #     points=level, 
-        #     comical_description=comical_description, 
-        #     fantasy_universe=fantasy_universe)
+        spell_level = spell.json()['level']
+        spell_desc = spell.json()['desc']
+        spell_universe = "D&D"
+    
+        spell = Spell.objects.create(name=spell_name, 
+            level=spell_level, 
+            points=spell_level, 
+            comical_description=spell_desc, 
+            fantasy_universe=spell_universe)
+        for i in new_classes:
+            spell.class_type.add(i)
     
 
     
