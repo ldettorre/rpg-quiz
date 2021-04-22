@@ -3,25 +3,21 @@ import json
 from .models import ClassType, Spell
 
 
-
-# Below loops over the API classes and creates them within our db.
-
-# base_url = 'https://www.dnd5eapi.co'
-
-# response = requests.get(base_url + '/api/classes/')
-
-# data = response.json()
-
-# for d in data['results']:
-#     new_class = d['name']
-#     ClassType.objects.create(name=new_class)
-
-
 base_url = 'https://www.dnd5eapi.co'
 
-response = requests.get(base_url + '/api/spells/')
 
-data = response.json()
+# response = requests.get(base_url + '/api/classes/')
+# data = response.json()
+
+def class_entry(obj):
+    '''Below loops over the API classes and creates them within our db.'''
+    for d in data['results']:
+        new_class = d['name']
+        ClassType.objects.create(name=new_class)
+
+
+# response = requests.get(base_url + '/api/spells/')
+# data = response.json()
 
 def spell_entry(obj):
     ''' Loop over each spell for it's url, then use the url in a request to access
@@ -57,7 +53,7 @@ def spell_entry(obj):
     
 
     
-spell_entry(data)
+
 
 
 
