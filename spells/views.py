@@ -10,14 +10,17 @@ def index(request, spell_id=None):
     the seletions class type and points'''
     previous_selections = request.session.get('previous_selections', [])
     if spell_id != None:
+        if len(previous_selections) > 0 and previous_selections[-1] == spell_id:
+            return redirect('reset')
         user_selection = get_object_or_404(Spell, id=spell_id)
-        previous_selections.append(user_selection.id)                                                    
+        previous_selections.append(user_selection.id)
+        print(previous_selections)                                           
         request.session['previous_selections'] = previous_selections
 
         class_scores = request.session.get('class_scores', {})
         for each_class in user_selection.class_type.all():
             class_scores[each_class.name] = class_scores.get(each_class.name, 0) + user_selection.points
-            request.session['class_scores'] = class_scores
+            request.session['class_scores'] = class_scores  
 
         '''Check if any class_type has exceeded the point limit'''
         for c in class_scores:
@@ -30,6 +33,7 @@ def index(request, spell_id=None):
                     'class_type': class_type,
                 }
                 return render(request, 'spells/index.html', context)
+
 
     '''Pull 2 random spells if there are less selections 
     made than spells available'''
@@ -53,7 +57,8 @@ def index(request, spell_id=None):
 
 def reset(request):
     '''Resets the session and removes existing quiz selections'''
-    class_scores = request.session.clear()
+    request.session.clear() 
+    # request.session.flush()
     return redirect('index')
 
 
