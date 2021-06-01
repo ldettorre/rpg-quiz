@@ -58,7 +58,6 @@ def index(request, spell_id=None):
 def reset(request):
     '''Resets the session and removes existing quiz selections'''
     request.session.clear() 
-    # request.session.flush()
     return redirect('index')
 
 
