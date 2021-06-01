@@ -6,19 +6,21 @@ from .models import ClassType, Spell
 base_url = 'https://www.dnd5eapi.co'
 
 ''' Class API Resource '''
-# response = requests.get(base_url + '/api/classes/')
+response_classes = requests.get(base_url + '/api/classes/')
+data_classes = response_classes.json()
 
 ''' Spells API Resource '''
-# response = requests.get(base_url + '/api/spells/')
+response_spells = requests.get(base_url + '/api/spells/')
+data_spells = response_spells.json()
 
 ''' Features API Resource '''
-response = requests.get(base_url + '/api/features/')
+response_features = requests.get(base_url + '/api/features/')
+data_features = response_features.json()
 
-data = response.json()
 
 def class_entry(obj):
     '''Below loops over the API classes and creates them within our db.'''
-    for d in data['results']:
+    for d in obj['results']:
         new_class = d['name']
         ClassType.objects.create(name=new_class)
 
@@ -29,7 +31,6 @@ def spell_entry(obj):
     to a variable, we create a new spell object and add classes '''
 
     data = obj
-
     for i in data['results']:
         spell = requests.get(base_url + i['url'])
         spell_name = spell.json()['name']
@@ -63,7 +64,7 @@ def feature_entry(obj):
     use the url to pull the neccesary data and create a new object. Features
     with no levels are set as 0 by default thanks to the try/except for KeyErrors'''
 
-    features = obj
+    data = obj
     for i in data['results']:
         feature = requests.get(base_url + i['url'])
         feature_name = feature.json()['name']
@@ -94,4 +95,5 @@ def feature_entry(obj):
             spell.class_type.add(i)
 
 
-feature_entry(data)
+
+

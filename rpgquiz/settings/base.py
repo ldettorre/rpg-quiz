@@ -27,7 +27,7 @@ SECRET_KEY = '6n$%cu7bt2md+n+7p9htq2o)(wgvs7-g(tbcm6+a7(+zqc_9(b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", False)
 
-ALLOWED_HOSTS = ['rpgquiz.herokuapp.com']
+ALLOWED_HOSTS = ['rpgquiz.herokuapp.com','127.0.0.1']
 
 
 # Application definition
