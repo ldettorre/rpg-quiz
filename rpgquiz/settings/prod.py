@@ -10,3 +10,4 @@ DATABASES= {
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'rpgquiz/static')]
 STATICFILES_LOCATION = 'static'
+STATIC_URL = '/static/'
