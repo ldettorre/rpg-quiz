@@ -7,3 +7,6 @@ SECRET_KEY = config("SECRET_KEY")
 DATABASES= {
         'default': dj_database_url.parse(config('DATABASE_URL'))
     }
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'rpgquiz/static')]
+STATICFILES_LOCATION = 'static'
