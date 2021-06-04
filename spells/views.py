@@ -8,6 +8,8 @@ import random
 def index(request, spell_id=None):
     '''Save the users recent selection to a list and keep record of
     the seletions class type and points'''
+
+    spells = Spell.objects.all().filter(is_included=True)
     previous_selections = request.session.get('previous_selections', [])
     if spell_id != None:
         if len(previous_selections) > 0 and previous_selections[-1] == spell_id:
@@ -37,10 +39,10 @@ def index(request, spell_id=None):
 
     '''Pull 2 random spells if there are less selections 
     made than spells available'''
-    if len(previous_selections) <= len(Spell.objects.all())-2:
+    if len(previous_selections) <= len(spells)-2:
         random_spells_list = []
         while len(random_spells_list) < 2:
-            random_spell = random.choice(Spell.objects.all())
+            random_spell = random.choice(spells)
             if random_spell.id not in previous_selections:
                 if random_spell not in random_spells_list:
                     random_spells_list.append(random_spell)

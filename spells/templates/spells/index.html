@@ -21,14 +21,7 @@
     <div class="row">
         {% for spell in random_spells_list %}
         <div class="col-6">
-            <p>Name: {{ spell.name }}</p>
-            <p>Class:{% for type in spell.class_type.all %}
-                 {{ type.name }}
-            {% endfor %}</p>
-            <p>Level: {{ spell.level }}</p>
-            <p>Points: {{ spell.points }}</p>
             <p>Description: {{ spell.comical_description }}</p>
-            <p>{{ spell.fantasy_universe }}</p>
             <a href="{% url 'index' spell.id %}" class="btn btn-default">Select</a>
         </div>
         {% endfor %}

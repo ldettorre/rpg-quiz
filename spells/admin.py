@@ -8,7 +8,8 @@ class ClassTypeAdmin(admin.ModelAdmin):
 
 
 class SpellAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'points',)
+    list_display = ('id', 'name', 'points', 'is_included')
+    list_editable = ('is_included',)
 
 
 admin.site.register(Spell, SpellAdmin)

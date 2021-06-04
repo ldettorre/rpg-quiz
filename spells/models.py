@@ -14,9 +14,10 @@ class Spell(models.Model):
     class_type = models.ManyToManyField(ClassType)
     level = models.IntegerField()
     points = models.IntegerField()
-    comical_description = models.TextField()
+    description = models.TextField()
     fantasy_universe = models.CharField(max_length=100, default = "Example: D&D")
     ability_type = models.CharField(max_length=100, blank=True, choices = ABILITY_CHOICES)
+    is_included = models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
