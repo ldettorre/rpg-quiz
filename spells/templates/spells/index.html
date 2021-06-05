@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container">
     <div class='row'>
         <div class='col text-center'>
             <h1> This is the spells page </h1>
@@ -21,7 +20,7 @@
     <div class="row">
         {% for spell in random_spells_list %}
         <div class="col-6">
-            <p>Description: {{ spell.comical_description }}</p>
+            <p>Description: {{ spell.description }}</p>
             <a href="{% url 'index' spell.id %}" class="btn btn-default">Select</a>
         </div>
         {% endfor %}
@@ -30,5 +29,5 @@
     <div class='col-12 text-center'>
         <a href="{% url 'reset' %}" class="btn btn-default">Reset the quiz.</a>
     </div>
-</div>
+
 {% endblock %}
