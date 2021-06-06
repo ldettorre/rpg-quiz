@@ -19,6 +19,12 @@ class Spell(models.Model):
     ability_type = models.CharField(max_length=100, blank=True, choices = ABILITY_CHOICES)
     is_included = models.BooleanField(default=False)
     
+
+
+    def get_classes(self):
+        ''' Below pulls the name from a ManyToMany model in order to show it in django's list display'''
+        return "\n".join([c.name for c in self.class_type.all()])
+
     def __str__(self):
         return self.name
     

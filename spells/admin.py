@@ -8,7 +8,7 @@ class ClassTypeAdmin(admin.ModelAdmin):
 
 
 class SpellAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'points', 'is_included')
+    list_display = ('id', 'name', 'get_classes', 'points', 'is_included')
     list_editable = ('is_included',)
 
 
