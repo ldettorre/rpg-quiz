@@ -19,9 +19,9 @@
     
     <div class="row">
         {% for spell in random_spells_list %}
-        <div class="col-6">
+        <div class="col-md col-sm">
             <p>{{ spell.description }}</p>
-            <a href="{% url 'index' spell.id %}" class="btn btn-default">Select</a>
+            <a href="{% url 'quiz' spell.id %}" class="btn btn-default">Select</a>
         </div>              
         {% endfor %}
     </div>

@@ -5,7 +5,7 @@ import random
 
 # Create your views here.
 
-def index(request, spell_id=None):
+def quiz(request, spell_id=None):
     '''Save the users recent selection to a list and keep record of
     the seletions class type and points'''
 
@@ -34,7 +34,7 @@ def index(request, spell_id=None):
                     'result_message': result_message,
                     'class_type': class_type,
                 }
-                return render(request, 'spells/index.html', context)
+                return render(request, 'spells/quiz.html', context)
 
 
     '''Pull 2 random spells if there are less selections 
@@ -48,24 +48,24 @@ def index(request, spell_id=None):
                     random_spells_list.append(random_spell)
     else:
         no_result = "You finished the quiz and still don't have a destiny?!"
-        return render(request, 'spells/index.html', {'no_result':no_result})
+        return render(request, 'spells/quiz.html', {'no_result':no_result})
 
     context = {
         'random_spells_list': random_spells_list,
     }
-    return render(request, 'spells/index.html', context)
+    return render(request, 'spells/quiz.html', context)
 
 
 
 def reset(request):
     '''Resets the session and removes existing quiz selections'''
     request.session.clear() 
-    return redirect('index')
+    return redirect('quiz')
 
 
 def result(request, class_type):
     '''This renders the result page html with relevant class details'''
     content_url = "https://www.dndbeyond.com/classes/"+class_type
-    return render(request, 'spells/result.html',  {'class_type': class_type,'content_url': content_url})
+    return render(request, 'spells/quiz.html',  {'class_type': class_type,'content_url': content_url})
 
 

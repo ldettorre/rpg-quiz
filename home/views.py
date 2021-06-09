@@ -6,4 +6,5 @@ def index(request):
     return render(request, 'home/index.html')
 
 def faq(request):
+    request.session.clear()
     return render(request, 'home/faq.html')

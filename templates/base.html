@@ -10,26 +10,33 @@
     <title>Destiny Dungeon</title>
 </head>
 <body class="text-center bg-img">
-        <div class="index-text">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Top navbar</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                      <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">F.A.Q.</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-
-                {% block content %}
-                {% endblock %}
-      
+    <div class="index-text">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="/">What the RP?! </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'quiz' %}">Start Quiz</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'faq' %}">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <!-- End of Navbar -->
+        <div class="container">
+            {% block content %}
+            {% endblock %}
         </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="undefined" crossorigin="anonymous"></script>
 </body>
 </html>
