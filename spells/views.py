@@ -66,6 +66,6 @@ def reset(request):
 def result(request, class_type):
     '''This renders the result page html with relevant class details'''
     content_url = "https://www.dndbeyond.com/classes/"+class_type
-    return render(request, 'spells/quiz.html',  {'class_type': class_type,'content_url': content_url})
+    return render(request, 'spells/result.html',  {'class_type': class_type,'content_url': content_url})
 
 

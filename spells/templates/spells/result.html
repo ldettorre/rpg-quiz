@@ -1,23 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col text-center">
-            <h1> Congratulations Wanderer! </h1>
-            <h2>Your class awaits!</h2>
-        </div>
-    </div>
+<div class="container text-center">    
     
-    <div class="row">
-        <h2>You are destined to be a <b>{{ class_type }}</b></h2>
-    </div>
-    <div class="row">
-        <p>Learn more about your class by checking out more about it here</p>
-    </div>
-    <div class="row">
-        <a href={{content_url}} target="_blank">Click here</a>
-    </div>
+    <h2>You are destined to be a <b>{{ class_type }}</b></h2>
+  
+    <p>Learn more about your class by checking out more about it <a href={{content_url}} target="_blank">here.</a></p>
+
+   
     
-    <a href="{% url 'reset' %}" class="btn btn-default">Reset the quiz.</a>
+    <a class="btn btn-styling" href="{% url 'reset' %}" class="quiz-buttons">Reset the quiz.</a>
 </div>
 {% endblock %}

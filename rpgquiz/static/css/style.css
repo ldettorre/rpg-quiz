@@ -1,6 +1,15 @@
 body {
     margin-top:50px;
 }
+
+.landing-title {
+    margin-top: 20vh;
+}
+
+.card-text {
+    color:black;
+}
+
 .bg-img {
     background-image: url("/static/img/dungeon_background.jpg");
     background-repeat: no-repeat;
@@ -8,16 +17,29 @@ body {
     background-color: rgba(0,0,0,0.25);
 }
 
-.bg-img::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba(0,0,0,0.25);
-}
-
 .index-text {
     color:aliceblue;
+}
+
+
+.btn-styling{
+    color:aliceblue;
+    border-color: aliceblue;
+    margin:20px;
+}
+
+.btn-styling:hover {
+    color:grey;
+    border-color: aliceblue;
+    background-color: white;
+}
+
+
+.desc-styling {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
 }

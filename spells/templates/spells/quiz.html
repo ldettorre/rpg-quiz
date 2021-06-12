@@ -1,33 +1,27 @@
 {% extends 'base.html' %} {% block content %}
 
-    <div class='row'>
-        <div class='col text-center'>
-            <h1> This is the spells page </h1>
-        </div>
-   </div>
    <div class='row'>
         <div class="col text-center">
             {% if result_message %}
-                <a href="{% url 'result' class_type %}" class="btn btn-default">{{ result_message }}. </a>
+                <a href="{% url 'result' class_type %}" class="btn btn-default btn-styling">{{ result_message }}</a>
             {% elif no_result %}
                 {{ no_result }}
             {% else %}
-                <p>Make a selection</p>
+                <h1>Would you rather... </h1>
             {% endif %}
         </div>
     </div>
     
     <div class="row">
         {% for spell in random_spells_list %}
-        <div class="col-md col-sm">
-            <p>{{ spell.description }}</p>
-            <a href="{% url 'quiz' spell.id %}" class="btn btn-default">Select</a>
-        </div>              
+        <a class="btn btn-styling col-md col-sm" href="{% url 'quiz' spell.id %}">
+            <p class="desc-styling">{{ spell.description }}</p>   
+        </a>   
         {% endfor %}
     </div>
    
     <div class='col-12 text-center'>
-        <a href="{% url 'reset' %}" class="btn btn-default">Reset the quiz.</a>
+        <a class="btn btn-styling" href="{% url 'reset' %}" class="quiz-buttons">Reset the quiz.</a>
     </div>
 
 {% endblock %}
