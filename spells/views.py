@@ -28,7 +28,7 @@ def quiz(request, spell_id=None):
         for c in class_scores:
             print(c,class_scores[c])
             if class_scores[c] >= 20:
-                result_message = "Congratulations! You're ready to discover your class type."
+                result_message = "You're ready to discover your class type!"
                 class_type = c
                 context = {
                     'result_message': result_message,

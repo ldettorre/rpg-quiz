@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="container text-center result-div">    
+<div class="text-center pt-4">    
     
-    <h2>You are destined to be a <b>{{ class_type }}</b></h2>
+    <h1>You are destined to be a <b>{{ class_type }}</b></h1>
   
-    <p>Learn more about your class by checking out more about it <a href={{content_url}} target="_blank">here.</a></p>
+    <p>Learn more about the {{ class_type }} class by clicking <a href={{content_url}} target="_blank">here.</a></p>
     
     <a class="btn btn-styling" href="{% url 'reset' %}" class="quiz-buttons">Reset the quiz.</a>
 </div>

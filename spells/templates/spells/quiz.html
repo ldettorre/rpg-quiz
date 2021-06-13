@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
    <div class='row'>
-        <div class="col text-center">
+        <div class="col text-center pt-4">
             {% if result_message %}
+                <h1> Congratulations!</h1>
                 <a href="{% url 'result' class_type %}" class="btn btn-default btn-styling">{{ result_message }}</a>
             {% elif no_result %}
                 {{ no_result }}
