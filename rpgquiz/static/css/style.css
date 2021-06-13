@@ -21,7 +21,6 @@ body {
     color:aliceblue;
 }
 
-
 .btn-styling{
     color:aliceblue;
     border-color: aliceblue;
@@ -34,7 +33,6 @@ body {
     background-color: white;
 }
 
-
 .desc-styling {
     text-align: center;
     position: relative;
@@ -42,4 +40,8 @@ body {
     -ms-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.result-div {
+    margin-top: 10%;
 }
