@@ -3,12 +3,12 @@
    <div class='row'>
         <div class="col text-center pt-4">
             {% if result_message %}
-                <h1> Congratulations!</h1>
-                <a href="{% url 'result' class_type %}" class="btn btn-default btn-styling">{{ result_message }}</a>
+                <h1 class="quiz-title"> Congratulations!</h1>
+                <a href="{% url 'result' class_type %}" class="btn btn-styling">{{ result_message }}</a>
             {% elif no_result %}
                 {{ no_result }}
             {% else %}
-                <h1>Would you rather... </h1>
+                <h1 class="quiz-title">Would you rather... </h1>
             {% endif %}
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="row">
         {% for spell in random_spells_list %}
         <a class="btn btn-styling col-md col-sm" href="{% url 'quiz' spell.id %}">
-            <p class="desc-styling">{{ spell.description }}</p>   
+            <p class="spell-desc">{{ spell.description }}</p>   
         </a>   
         {% endfor %}
     </div>

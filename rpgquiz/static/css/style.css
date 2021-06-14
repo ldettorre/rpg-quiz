@@ -1,13 +1,7 @@
+/* GENERAL / SITEWIDE */
+
 body {
     margin-top:50px;
-}
-
-.landing-title {
-    margin-top: 20vh;
-}
-
-.card-text {
-    color:black;
 }
 
 .bg-img {
@@ -17,9 +11,59 @@ body {
     background-color: rgba(0,0,0,0.25);
 }
 
-.index-text {
+/* END OF GENERAL / SITEWIDE */
+
+
+
+/* LANDING PAGE */
+
+.landing-title {
+    margin-top: 20vh;
     color:aliceblue;
 }
+
+.landing-blurb {
+    color:aliceblue;
+}
+
+/* END OF LANDING PAGE */
+
+
+
+/* QUIZ PAGE */
+
+.quiz-title {
+    color:aliceblue;
+}
+
+.spell-desc {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/* END OF QUIZ PAGE */
+
+
+
+/* RESULTS PAGE */
+
+.result-title {
+    color:aliceblue;
+}
+
+.result-blurb {
+    color:aliceblue;
+}
+
+/* END OF RESULTS PAGE */
+
+
+
+/* UTILITIES */
 
 .btn-styling{
     color:aliceblue;
@@ -33,12 +77,9 @@ body {
     background-color: white;
 }
 
-.desc-styling {
-    text-align: center;
-    position: relative;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
+/* END OF UTILITIES */
+
+
+
+
 
