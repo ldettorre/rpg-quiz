@@ -83,12 +83,12 @@ The steps provided assume that you have forked the repository to your GitHub alr
 
 Note that we did not set a DEBUG config var as this will default to False as seen in the base.py file. 
 
-Once the above has been completed you can return to the Deploy tab, scroll down to ‘Manual Deploy’ and click ‘Deploy Branch’. Should you encounter any issue, I would recommend then consulting the log by returning to the app dashboard within Heroku, clicking on 'More' in the top right and selecting 'View Logs'. You may need to redeploy the app with the log opened in order to see an entire account of what happened. While you could create a config var called DEBUG and set it to True in order to receive the famous 'yellow page error', please ensure you remember to remove it when you're done.
+Once the above has been completed you can return to the Deploy tab, scroll down to ‘Manual Deploy’ and click ‘Deploy Branch’. Should you encounter any issue, I would recommend then consulting the log by returning to the app dashboard within Heroku, clicking on 'More' in the top right and selecting 'View Logs'. You may need to redeploy the app with the log opened in order to see an entire account of what happened. While you could create a config var called DEBUG and set it to True in order to receive any 'yellow page errors', please ensure you remember to remove it when you're done.
 
 ### Running Locally
 To get this project running locally, you will need to clone the repository and install the requirements.txt file. Following that, you must ensure all secret keys, as noted in the Deployment section, are set up. For this project I used [python-decouple](https://pypi.org/project/python-decouple/) which worked brilliantly and was extremely simple. You can also use an env.py file if preferred. 
 
-You should then create a superuser and run makemigrations/migrate in order for it and the models to be applied. Your allowed hosts will also need to be updated with the address returned in the browsers error message upon first running the app.
+You should then create a superuser and run makemigrations/migrate in order for it and the models to be applied. Your 'allowed hosts' within base.py will also need to be updated with the address returned in the browsers error message upon first running the app.
 
 ## Content
 The quiz content consists of spells and abilities taken from the [D&D 5th Edition API](https://www.dnd5eapi.co/). 
