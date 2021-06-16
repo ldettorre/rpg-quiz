@@ -4,6 +4,9 @@ body {
     margin-top:50px;
 }
 
+h1,h2,h3,a,p,li {
+}
+
 .bg-img {
     background-image: url("/static/img/dungeon_background.jpg");
     background-repeat: no-repeat;
@@ -20,6 +23,7 @@ body {
 .landing-title {
     margin-top: 20vh;
     color:aliceblue;
+    font-family: fantasy, serif;
 }
 
 .landing-blurb {
